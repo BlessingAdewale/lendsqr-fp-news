@@ -1,6 +1,32 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es6"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "target": "esnext",
+    "baseUrl": "src",
+    "paths": {
+      "@assets": ["assets/"],
+      "@globalStyles": ["assets/globalStyles.ts"],
+      "@components": ["components/index.ts"],
+      "@constants": ["constants/index.ts"],
+      "@models": ["models/index.ts"],
+      "@hooks": ["hooks/index.ts"],
+      "@context" : ["context/index.ts"],
+      "@screens": ["screens/index.ts"],
+      "@auth": ["auth/index.ts"],
+      "@state": ["state/index.ts"],
+      "@services": ["services/index.ts"],
+      "@utils": ["utils/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }
