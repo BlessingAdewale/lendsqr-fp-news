@@ -25,30 +25,30 @@ export const Home = () => {
       ).then((res) => res.json()),
   });
 
-  if (isPending) return <ActivityIndicator animating={true} size={95} color="#110" />;
+  if (isPending) return <ActivityIndicator animating={true} size={155} color="#110" />;
 
   if (error) return <Text>An error has occurred: {error.message} </Text>;
 
-  const renderItem = React.useCallback(
-    ({ item }) => (
-      <View>
-        <Text>{item.title}</Text>
-      </View>
-    ),
-    [],
-  );
+  const renderItem = ({ item }: any) => (
+      <TouchableOpacity>
+        <View key={item.id} >
+          <Text>{item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    )
+  
 
   return (
     <SafeAreaView style={styles.container}>
-   
-      <TouchableOpacity>
-        <FlatList
-          data={data.data}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          showsVerticalScrollIndicator={true}
-        />
-      </TouchableOpacity>
+      <View>
+       <FlatList
+        data={data.data}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={true}
+      />
+      </View>
+     
     </SafeAreaView>
   );
 };

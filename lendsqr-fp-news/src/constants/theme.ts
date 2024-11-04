@@ -1,10 +1,9 @@
-import {useColorScheme} from 'react-native';
+import { useColorScheme } from 'react-native';
 
+const colorScheme = useColorScheme();
 export const theme = {
-
-  dark: false,
+  dark: colorScheme,
   colors: {
-    ...useColorScheme.apply,
     teal1: '#0898A0',
     teal2: '#41BCC4',
     instructiveRed: '#EB5757',

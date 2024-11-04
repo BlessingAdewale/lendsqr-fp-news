@@ -4,19 +4,24 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from './src/navigation/NavigationContainer';
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+// import { useFontsHelper } from '@hooks';
 
-// Create a client
 const queryClient = new QueryClient();
 
 export default function App() {
+
+  // const { appIsReady } = useFontsHelper();
+
+  // if (!appIsReady) {
+  //   return null;
+  // }
+
+
   return (
-    // Provide the client to your App
+ 
     <>
       <QueryClientProvider client={queryClient}>
         <NavigationContainer />
