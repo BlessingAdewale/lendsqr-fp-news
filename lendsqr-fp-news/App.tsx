@@ -6,13 +6,9 @@ import { NavigationContainer } from './src/navigation/NavigationContainer';
 
 export default function App() {
   return (
-    // <>
-    //   <NavigationContainer />
-    // </>
-
-    <View>
-      <Text>Hellow World</Text>
-    </View>
+    <>
+      <NavigationContainer />
+    </>
   );
 }
 
