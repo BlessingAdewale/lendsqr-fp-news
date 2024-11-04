@@ -13,7 +13,10 @@ const MainBottomTab = createBottomTabNavigator<MainBottomTabParamList>();
 export const MainBottomTabNavigator = () => {
   return (
     <MainBottomTab.Navigator
-
+      initialRouteName="Home"
+      screenOptions={{
+        headerShown: false,
+      }}
     >
       <MainBottomTab.Screen
         name="Home"
