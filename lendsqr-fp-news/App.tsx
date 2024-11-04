@@ -7,17 +7,17 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
-// import { useFontsHelper } from '@hooks';
+import { useFontsHelper } from '@hooks';
 
 const queryClient = new QueryClient();
 
 export default function App() {
 
-  // const { appIsReady } = useFontsHelper();
+  const { appIsReady } = useFontsHelper();
 
-  // if (!appIsReady) {
-  //   return null;
-  // }
+  if (!appIsReady) {
+    return null;
+  }
 
 
   return (
