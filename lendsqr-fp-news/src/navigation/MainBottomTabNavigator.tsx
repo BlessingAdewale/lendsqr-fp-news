@@ -17,6 +17,8 @@ export const MainBottomTabNavigator = () => {
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
+        tabBarActiveTintColor: '#110',
+        tabBarInactiveTintColor: '#252503'
       }}
     >
       <MainBottomTab.Screen
@@ -42,7 +44,7 @@ export const MainBottomTabNavigator = () => {
         component={Profile}
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <MaterialIcons name={focused ? 'person-outline' : 'person'} size={25} color={color} />
+            <MaterialIcons name={focused ? 'person' : 'person-outline'} size={25} color={color} />
           ),
         }}
       />

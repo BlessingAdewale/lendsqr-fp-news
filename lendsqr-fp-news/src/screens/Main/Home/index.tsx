@@ -2,6 +2,7 @@ import {
   ActivityIndicator,
   FlatList,
   Image,
+  ImageBackground,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -11,6 +12,9 @@ import {
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { layout } from '@utils';
+import { LinearGradient } from 'expo-linear-gradient';
+
+const image = require('../../../assets/error-image.png');
 
 export const Home = () => {
   const { isPending, error, data } = useQuery({
@@ -25,6 +29,7 @@ export const Home = () => {
           },
         },
       ).then((res) => res.json()),
+    staleTime: Infinity,
   });
 
   if (isPending) return <ActivityIndicator animating={true} size={'large'} color="#161616" />;
@@ -35,14 +40,18 @@ export const Home = () => {
 
   const renderItem = ({ item }: any) => (
     <TouchableOpacity>
-      <View key={item.id}>
+      <View style={styles.card} key={item.id}>
         <Image
           style={styles.image}
           source={{
             uri: `${item.photo_url}`,
           }}
-          resizeMode="contain"
         />
+        <Text style={styles.title}>{item.title.slice(0, 55)}.</Text>
+        <Text style={styles.published}>
+          Published on {item.published_datetime_utc.slice(0, 10)}
+        </Text>
+        <Text style={styles.published}>By {item.source_name}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -50,12 +59,37 @@ export const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headContainer}>
-        <View style={styles.headContent}></View>
+        <ImageBackground
+          source={isPending ? image : { uri: `${data?.data[0]?.photo_url}` }}
+          style={{
+            width: '100%',
+            height: '100%',
+            justifyContent: 'center',
+            overflow: 'hidden',
+            borderBottomLeftRadius: layout.fontPixel(40),
+            borderBottomRightRadius: layout.fontPixel(40),
+          }}
+          // resizeMode='cover'
+        >
+          <LinearGradient
+            colors={[' rgba(214, 208, 208, 0.521)', ' rgba(66, 57, 57, 0.521)']}
+            style={styles.background}
+          />
+          <View style={styles.headContent}></View>
+        </ImageBackground>
       </View>
-
-      <View style={styles.textContainer}>
-        <Text style={styles.breakingNews}>Breaking News</Text>
-        <Text style={styles.more}>More</Text>
+      <View
+        style={{
+          paddingHorizontal: layout.pixelSizeHorizontal(23),
+          marginTop: layout.pixelSizeVertical(25),
+          marginBottom: layout.pixelSizeVertical(30),
+        }}
+      >
+        <Text style={styles.textContainer}>
+          <Text style={styles.breakingNews}>Breaking News</Text>
+          {''}
+          <Text style={styles.more}>More</Text>
+        </Text>
       </View>
 
       <View>
@@ -90,26 +124,47 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     borderColor: '#fff',
-    backgroundColor: 'blue',
     width: '100%',
     height: layout.heightPixel(700),
-    borderBottomLeftRadius: layout.fontPixel(40),
-    borderBottomRightRadius: layout.fontPixel(40),
+    // borderBottomLeftRadius: layout.fontPixel(40),
+    // borderBottomRightRadius: layout.fontPixel(40),
   },
   headContent: {
     marginTop: layout.pixelSizeVertical(52),
     paddingHorizontal: layout.pixelSizeHorizontal(20),
   },
   textContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: layout.pixelSizeHorizontal(20),
-    marginTop: layout.pixelSizeVertical(25),
+    // alignItems: 'center',
   },
   image: {
-    width: layout.widthPixel(70),
-    height: layout.heightPixel(30),
+    width: layout.widthPixel(240),
+    height: layout.heightPixel(170),
     borderRadius: layout.fontPixel(25),
+    marginLeft: layout.pixelSizeHorizontal(23),
+  },
+  card: {},
+  title: {
+    fontSize: layout.size.h3,
+    fontFamily: 'DMSans_500Medium',
+    marginLeft: layout.pixelSizeHorizontal(23),
+    maxWidth: layout.widthPixel(250),
+    marginTop: layout.pixelSizeVertical(15),
+    marginBottom: layout.pixelSizeVertical(11),
+  },
+  published: {
+    fontSize: layout.size.h4,
+    fontFamily: 'DMSans_400Regular',
+    marginLeft: layout.pixelSizeHorizontal(23),
+    color: 'grey',
+  },
+  background: {
+    width: '100%',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: layout.heightPixel(700),
   },
 });
