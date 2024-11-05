@@ -14,11 +14,16 @@ import { useQuery } from '@tanstack/react-query';
 import { layout } from '@utils';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BlurView } from 'expo-blur';
+import Entypo from '@expo/vector-icons/Entypo';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { globalStyles } from '@globalStyles';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { StatusBar } from 'expo-status-bar';
 
 const image = require('../../../assets/error-image.png');
 
 export const Home = () => {
-  const { isPending, error, data } = useQuery({
+  const { isPending, error, data, isLoading, isFetching } = useQuery({
     queryKey: ['ce12c9aabemshc511d2300593e02p110812jsnfc8259a91719'],
     queryFn: () =>
       fetch(
@@ -33,15 +38,16 @@ export const Home = () => {
     staleTime: Infinity,
   });
 
-  if (isPending) return <ActivityIndicator animating={true} size={'large'} color="#161616" />;
-
+  if (isPending) return <ActivityIndicator animating={true} size={'large'} color="#ef4046" />;
+  if (isLoading) return <ActivityIndicator animating={true} size={'large'} color="#ef4046" />;
+  if (isFetching) return <ActivityIndicator animating={true} size={'large'} color="#ef4046" />;
   if (error) return <Text>An error has occurred: {error.message} </Text>;
 
   if (data) console.log(data);
 
   const renderItem = ({ item }: any) => (
     <TouchableOpacity>
-      <View style={styles.card} key={item.id}>
+      <View key={item.id}>
         <Image
           style={styles.image}
           source={{
@@ -60,22 +66,44 @@ export const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headContainer}>
+        <StatusBar style="light" />
         <ImageBackground
-          source={isPending ? image : { uri: `${data?.data[0]?.photo_url}` }}
+          source={isLoading ? image : { uri: `${data?.data[0]?.photo_url}` }}
           style={{
             width: '100%',
             height: '100%',
             justifyContent: 'center',
             overflow: 'hidden',
-            borderBottomLeftRadius: layout.fontPixel(40),
-            borderBottomRightRadius: layout.fontPixel(40),
+            borderBottomLeftRadius: layout.fontPixel(50),
+            borderBottomRightRadius: layout.fontPixel(50),
           }}
         >
           <LinearGradient
-            colors={[' rgba(214, 208, 208, 0.521)', ' rgba(66, 57, 57, 0.521)']}
+            colors={['transparent', '#110']}
+            start={{ x: 1.2, y: 1 }}
             style={styles.background}
           />
-          <View style={styles.headContent}></View>
+          <View style={styles.headContent}>
+            <TouchableOpacity>
+              <Entypo
+                name="menu"
+                size={44}
+                color="white"
+                style={{
+                  marginTop: layout.pixelSizeVertical(320),
+                  marginBottom: layout.pixelSizeVertical(60),
+                }}
+              />
+            </TouchableOpacity>
+            <BlurView intensity={10} style={styles.blurContainer}>
+              <Text style={styles.text}>News of the day</Text>
+            </BlurView>
+            <Text style={styles.headingText}>{data?.data[0]?.title.slice(0, 63)}</Text>
+            <View style={[globalStyles.rowStart, styles.learnMoreContainer]}>
+              <Text style={styles.learnMore}>Learn More</Text>
+              <FontAwesome name="long-arrow-right" size={23} color="white" />
+            </View>
+          </View>
         </ImageBackground>
       </View>
       <View
@@ -85,11 +113,14 @@ export const Home = () => {
           marginBottom: layout.pixelSizeVertical(30),
         }}
       >
-        <Text style={styles.textContainer}>
-          <Text style={styles.breakingNews}>Breaking News</Text>
-          {''}
-          <Text style={styles.more}>More</Text>
-        </Text>
+        <View style={globalStyles.rowBetween}>
+          <View>
+            <Text style={styles.breakingNews}>Breaking News</Text>
+          </View>
+          <View>
+            <Text style={styles.more}>More</Text>
+          </View>
+        </View>
       </View>
 
       <View>
@@ -115,34 +146,36 @@ const styles = StyleSheet.create({
   breakingNews: {
     fontSize: layout.size.h1,
     fontFamily: 'DMSans_700Bold',
+    color: '#ef4046',
+    position: 'absolute',
+    right: -22,
+    height: -70,
   },
   more: {
     fontSize: layout.size.h3,
     fontFamily: 'SpaceGrotesk_500Medium',
+    color: '#ef4046',
+    // position: 'absolute',
+    // right: 0,
+    // left: 67
   },
   headContainer: {
     justifyContent: 'flex-start',
     alignItems: 'center',
     borderColor: '#fff',
     width: '100%',
-    height: layout.heightPixel(700),
+    height: layout.heightPixel(750),
   },
   headContent: {
     marginTop: layout.pixelSizeVertical(52),
     paddingHorizontal: layout.pixelSizeHorizontal(20),
   },
-  textContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    // alignItems: 'center',
-  },
   image: {
     width: layout.widthPixel(240),
-    height: layout.heightPixel(170),
+    height: layout.heightPixel(130),
     borderRadius: layout.fontPixel(25),
     marginLeft: layout.pixelSizeHorizontal(23),
   },
-  card: {},
   title: {
     fontSize: layout.size.h3,
     fontFamily: 'DMSans_500Medium',
@@ -150,6 +183,7 @@ const styles = StyleSheet.create({
     maxWidth: layout.widthPixel(250),
     marginTop: layout.pixelSizeVertical(15),
     marginBottom: layout.pixelSizeVertical(11),
+    color: '#ef4046',
   },
   published: {
     fontSize: layout.size.h4,
@@ -163,6 +197,38 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    height: layout.heightPixel(700),
+    height: layout.heightPixel(750),
+  },
+  blurContainer: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    borderRadius: 20,
+    height: layout.heightPixel(35),
+    width: layout.widthPixel(150.1),
+    marginBottom: layout.pixelSizeVertical(15),
+  },
+  text: {
+    fontSize: layout.size.h4,
+    fontFamily: 'DMSans_500Medium',
+    marginHorizontal: layout.pixelSizeHorizontal(16),
+    color: '#efe5e5',
+  },
+  headingText: {
+    fontSize: layout.size.h1,
+    fontFamily: 'DMSans_500Medium',
+    color: '#fff',
+    maxWidth: 300,
+    // paddingRight: layout.pixelSizeHorizontal(58)
+  },
+  learnMore: {
+    fontSize: layout.size.h3,
+    fontFamily: 'DMSans_500Medium',
+    color: '#efe5e5',
+    paddingRight: layout.pixelSizeHorizontal(12),
+  },
+  arrow: {},
+  learnMoreContainer: {
+    marginTop: layout.pixelSizeVertical(15),
   },
 });

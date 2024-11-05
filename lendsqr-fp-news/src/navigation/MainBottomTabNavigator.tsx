@@ -17,8 +17,8 @@ export const MainBottomTabNavigator = () => {
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#110',
-        tabBarInactiveTintColor: '#252503'
+        tabBarActiveTintColor: '#ef4046',
+        tabBarInactiveTintColor: '#010101'
       }}
     >
       <MainBottomTab.Screen

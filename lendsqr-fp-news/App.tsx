@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from './src/navigation/NavigationContainer';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useFontsHelper } from '@hooks';
+import { ThemeProvider } from 'react-native-rapi-ui';
 
 const queryClient = new QueryClient();
 
@@ -17,9 +18,11 @@ export default function App() {
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <NavigationContainer />
-      </QueryClientProvider>
+      <ThemeProvider theme="light">
+        <QueryClientProvider client={queryClient}>
+          <NavigationContainer />
+        </QueryClientProvider>
+      </ThemeProvider>
     </>
   );
 }
