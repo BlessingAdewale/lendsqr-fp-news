@@ -13,6 +13,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { layout } from '@utils';
 import { LinearGradient } from 'expo-linear-gradient';
+import { BlurView } from 'expo-blur';
 
 const image = require('../../../assets/error-image.png');
 
@@ -69,7 +70,6 @@ export const Home = () => {
             borderBottomLeftRadius: layout.fontPixel(40),
             borderBottomRightRadius: layout.fontPixel(40),
           }}
-          // resizeMode='cover'
         >
           <LinearGradient
             colors={[' rgba(214, 208, 208, 0.521)', ' rgba(66, 57, 57, 0.521)']}
@@ -126,8 +126,6 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     width: '100%',
     height: layout.heightPixel(700),
-    // borderBottomLeftRadius: layout.fontPixel(40),
-    // borderBottomRightRadius: layout.fontPixel(40),
   },
   headContent: {
     marginTop: layout.pixelSizeVertical(52),
