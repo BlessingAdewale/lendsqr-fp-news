@@ -6,9 +6,9 @@ import { AuthStackNavigator } from './AuthStackNavigator';
 // import { useAppDispatch, useAppSelector } from '@state';
 
 export const NavigationContainer = () => {
-  // const isLoggedIn  = false
+  const isLoggedIn  = false
 
-  const isLoggedIn = true;
+  // const isLoggedIn = true;
 
   return (
     <BaseNavigationContainer>

@@ -40,12 +40,12 @@ export const globalStyles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: layout.pixelSizeVertical(18),
     marginTop: layout.pixelSizeVertical(90),
-    fontFamily: 'DMSans_700Bold'
+    fontFamily: 'SpaceGrotesk_700Bold'
   },
   textThere: {
     fontSize: layout.fontPixel(40),
     color: '#010101',
-      fontFamily: 'DMSans_700Bold'
+      fontFamily: 'DMSans_500Medium'
   },
   textCreate: {
     color: 'gray',

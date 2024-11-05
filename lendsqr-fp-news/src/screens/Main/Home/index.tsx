@@ -122,7 +122,6 @@ export const Home = () => {
           </View>
         </View>
       </View>
-
       <View>
         <FlatList
           data={data.data}
