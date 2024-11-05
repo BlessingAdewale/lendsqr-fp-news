@@ -12,8 +12,7 @@ export type AuthStackParamList = {
 
 export type MainBottomTabParamList = {
   Home: undefined;
-  World: undefined;
-  Bookmark: undefined;
+  Search: undefined;
   Profile: undefined;
 };
 
@@ -23,6 +22,5 @@ export type SignUpNavigationProp = NativeStackNavigationProp<AuthStackParamList,
 export type HomeTabNavigationProp = NativeStackNavigationProp<RootStackParamList, 'HomeStack'>;
 
 export type HomeNavigationProp = NativeStackNavigationProp<MainBottomTabParamList, 'Home'>;
-export type WorldNavigationProp = NativeStackNavigationProp<MainBottomTabParamList, 'World'>;
-export type BookmarkNavigationProp = NativeStackNavigationProp<MainBottomTabParamList, 'Bookmark'>;
+export type WorldNavigationProp = NativeStackNavigationProp<MainBottomTabParamList, 'Search'>;
 export type ProfileNavigationProp = NativeStackNavigationProp<MainBottomTabParamList, 'Profile'>;

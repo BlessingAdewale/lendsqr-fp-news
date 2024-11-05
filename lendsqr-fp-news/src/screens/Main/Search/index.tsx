@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export const World = () => {
+export const Search = () => {
   return (
     <View>
       <Text>World</Text>

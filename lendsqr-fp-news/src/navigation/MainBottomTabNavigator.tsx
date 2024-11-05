@@ -3,8 +3,9 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
-import { Bookmark, World, Home, Profile } from '@screens';
+import { Search, Home, Profile } from '@screens';
 import { MainBottomTabParamList } from './types';
 // import { colors } from '@constants';
 
@@ -23,25 +24,16 @@ export const MainBottomTabNavigator = () => {
         component={Home}
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <Ionicons name={focused ? 'grid' : 'grid-outline'} size={20} color={color} />
+            <MaterialIcons name={focused ? 'home-filled' : 'home-filled'} size={25} color={color} />
           ),
         }}
       />
       <MainBottomTab.Screen
-        name="World"
-        component={World}
+        name="Search"
+        component={Search}
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <Ionicons name={focused ? 'cart' : 'cart-outline'} size={20} color={color} />
-          ),
-        }}
-      />
-      <MainBottomTab.Screen
-        name="Bookmark"
-        component={Bookmark}
-        options={{
-          tabBarIcon: ({ focused, color }) => (
-            <Ionicons name={focused ? 'ios-heart' : 'ios-heart-outline'} size={20} color={color} />
+            <Ionicons name={focused ? 'search' : 'search-outline'} size={25} color={color} />
           ),
         }}
       />
@@ -50,7 +42,7 @@ export const MainBottomTabNavigator = () => {
         component={Profile}
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <FontAwesome name={focused ? 'user' : 'user-o'} size={20} color={color} />
+            <MaterialIcons name={focused ? 'person-outline' : 'person'} size={25} color={color} />
           ),
         }}
       />

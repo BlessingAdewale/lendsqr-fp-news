@@ -1,5 +1,5 @@
 export * from './NewsDetails'
 export * from './Home'
-export * from './World'
+export * from './Search'
 export * from './Profile'
 export * from './Bookmark'
