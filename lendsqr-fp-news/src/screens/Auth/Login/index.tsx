@@ -15,12 +15,7 @@ export const Login = () => {
   const [loading, setLoading] = React.useState(false);
   return (
     <View style={globalStyles.container}>
-      <Text
-        style={[
-          globalStyles.textHello,
-          { marginTop: layout.pixelSizeVertical(180) },
-        ]}
-      >
+      <Text style={[globalStyles.textHello, { marginTop: layout.pixelSizeVertical(180) }]}>
         Welcome{'\n'}
         <Text style={globalStyles.textThere}>back, Blessing </Text>
       </Text>
@@ -30,7 +25,7 @@ export const Login = () => {
       <GoogleButton marginTop={10} onPress={() => null} />
       <Text style={globalStyles.bottomText}>
         Don't have an account yet?{' '}
-        <Text onPress={() => null} style={globalStyles.textTerms}>
+        <Text onPress={navigateToSignUp} style={globalStyles.textTerms}>
           Create an account here{' '}
         </Text>{' '}
       </Text>
