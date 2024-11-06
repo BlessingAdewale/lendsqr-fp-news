@@ -1,11 +1,11 @@
-import { configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 // ...
 
-import logInReducer from '../features/logIn';
+import userReducer from '../features/user';
 
 export const store = configureStore({
   reducer: {
-    logIn: logInReducer,
+    user: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
