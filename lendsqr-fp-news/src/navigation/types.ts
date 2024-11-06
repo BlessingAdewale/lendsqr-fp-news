@@ -8,6 +8,7 @@ export type RootStackParamList = {
 export type AuthStackParamList = {
   Login: undefined;
   SignUp: undefined;
+  SignUp2: undefined
 };
 
 export type MainBottomTabParamList = {
@@ -18,6 +19,7 @@ export type MainBottomTabParamList = {
 
 export type LoginNavigationProp = NativeStackNavigationProp<AuthStackParamList, 'Login'>;
 export type SignUpNavigationProp = NativeStackNavigationProp<AuthStackParamList, 'SignUp'>;
+export type SignUp2NavigationProp = NativeStackNavigationProp<AuthStackParamList, 'SignUp2'>;
 
 export type HomeTabNavigationProp = NativeStackNavigationProp<RootStackParamList, 'HomeStack'>;
 

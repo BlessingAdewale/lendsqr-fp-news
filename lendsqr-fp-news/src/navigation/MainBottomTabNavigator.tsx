@@ -18,8 +18,13 @@ export const MainBottomTabNavigator = () => {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: '#ef4046',
-        tabBarInactiveTintColor: '#010101'
+        tabBarInactiveTintColor: '#010101',
+        tabBarStyle: {
+          // borderTopColor: '#ef4046',
+          // borderTopWidth: 0.168
+        }
       }}
+
     >
       <MainBottomTab.Screen
         name="Home"

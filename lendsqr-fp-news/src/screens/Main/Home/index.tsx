@@ -1,5 +1,4 @@
 import {
-  ActivityIndicator,
   FlatList,
   Image,
   ImageBackground,
@@ -19,6 +18,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import { globalStyles } from '@globalStyles';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { StatusBar } from 'expo-status-bar';
+import { ActivityIndicator } from 'react-native-paper';
 
 const image = require('../../../assets/error-image.png');
 
@@ -35,12 +35,26 @@ export const Home = () => {
           },
         },
       ).then((res) => res.json()),
-    staleTime: Infinity,
+    // staleTime: Infinity,
   });
 
-  if (isPending) return <ActivityIndicator animating={true} size={'large'} color="#ef4046" />;
-  if (isLoading) return <ActivityIndicator animating={true} size={'large'} color="#ef4046" />;
-  if (isFetching) return <ActivityIndicator animating={true} size={'large'} color="#ef4046" />;
+  if (isPending) return;
+
+  <Text style={[{ flex: 1 }, globalStyles.columnCenter]}>
+    <ActivityIndicator animating={true} size={'large'} color="#ef4046" />;
+  </Text>;
+  if (isLoading)
+    return (
+      <Text style={[{ flex: 1 }, globalStyles.columnCenter]}>
+        <ActivityIndicator animating={true} size={'large'} color="#ef4046" />;
+      </Text>
+    );
+  if (isFetching)
+    return (
+      <Text style={[{ flex: 1 }, globalStyles.columnCenter]}>
+        <ActivityIndicator animating={true} size={'large'} color="#ef4046" />;
+      </Text>
+    );
   if (error) return <Text>An error has occurred: {error.message} </Text>;
 
   if (data) console.log(data);
@@ -68,7 +82,8 @@ export const Home = () => {
       <View style={styles.headContainer}>
         <StatusBar style="light" />
         <ImageBackground
-          source={isLoading ? image : { uri: `${data?.data[0]?.photo_url}` }}
+          source={{ uri: `${data?.data[0]?.photo_url}` }}
+          defaultSource={image}
           style={{
             width: '100%',
             height: '100%',
@@ -99,10 +114,10 @@ export const Home = () => {
               <Text style={styles.text}>News of the day</Text>
             </BlurView>
             <Text style={styles.headingText}>{data?.data[0]?.title.slice(0, 63)}</Text>
-            <View style={[globalStyles.rowStart, styles.learnMoreContainer]}>
+            <TouchableOpacity style={[globalStyles.rowStart, styles.learnMoreContainer]}>
               <Text style={styles.learnMore}>Learn More</Text>
               <FontAwesome name="long-arrow-right" size={23} color="white" />
-            </View>
+            </TouchableOpacity>
           </View>
         </ImageBackground>
       </View>
@@ -117,9 +132,9 @@ export const Home = () => {
           <View>
             <Text style={styles.breakingNews}>Breaking News</Text>
           </View>
-          <View>
+          <TouchableOpacity>
             <Text style={styles.more}>More</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
       <View>
@@ -146,17 +161,17 @@ const styles = StyleSheet.create({
     fontSize: layout.size.h1,
     fontFamily: 'DMSans_700Bold',
     color: '#ef4046',
-    position: 'absolute',
-    right: -22,
-    height: -70,
+    marginRight: layout.pixelSizeHorizontal(162),
   },
   more: {
     fontSize: layout.size.h3,
     fontFamily: 'SpaceGrotesk_500Medium',
     color: '#ef4046',
-    // position: 'absolute',
-    // right: 0,
-    // left: 67
+    position: 'absolute',
+    right: -100,
+    left: -54,
+    bottom: -100,
+    top: -10,
   },
   headContainer: {
     justifyContent: 'flex-start',

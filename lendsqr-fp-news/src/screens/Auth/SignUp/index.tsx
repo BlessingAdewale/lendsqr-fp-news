@@ -4,11 +4,15 @@ import { Button, CheckBox, TextInput, themeColor } from 'react-native-rapi-ui';
 import { Ionicons } from '@expo/vector-icons';
 import { layout } from '@utils';
 import { globalStyles } from '@globalStyles';
+import { useSignUpHelper } from './useSignUpHelper';
+import { SubHeading } from '@components';
 
 export const SignUp = () => {
+  const { navigateToSignUp2 } = useSignUpHelper();
+
   const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [phoneNumber, setPhoneNumber] = React.useState('');
+  const [fullName, setFullName] = React.useState('');
   const [checkBox, setCheckbox] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
@@ -19,10 +23,50 @@ export const SignUp = () => {
         <Text style={globalStyles.textThere}>there!</Text>
       </Text>
 
-      <Text style={globalStyles.textCreate}>
-        Create an account to access news around the world and get real-time updates on unmissable
-        headlines
-      </Text>
+      <SubHeading
+        content="Create an account to access news around the world  and get real-time updates on unmissable
+        headlines"
+      />
+      <TextInput
+        placeholder="Enter your full name"
+        value={fullName}
+        autoCapitalize="none"
+        onChangeText={(val) => setFullName(val)}
+        borderRadius={25}
+        collapsable={true}
+        clearTextOnFocus
+        clearButtonMode="while-editing"
+        selectionColor={'#ef4046'}
+        containerStyle={{ paddingVertical: 10, borderWidth: 0.8 }}
+        leftContent={
+          <Ionicons
+            name="person-outline"
+            size={20}
+            color={themeColor.black300}
+            style={globalStyles.leftContent}
+          />
+        }
+      />
+      <TextInput
+        placeholder="Enter your phone number"
+        value={phoneNumber}
+        autoCapitalize="none"
+        onChangeText={(val) => setPhoneNumber(val)}
+        borderRadius={25}
+        collapsable={true}
+        clearTextOnFocus
+        clearButtonMode="while-editing"
+        selectionColor={'#ef4046'}
+        containerStyle={{ paddingVertical: 10, borderWidth: 0.8, marginTop: 20 }}
+        leftContent={
+          <Ionicons
+            name="phone-portrait-outline"
+            size={20}
+            color={themeColor.black300}
+            style={globalStyles.leftContent}
+          />
+        }
+      />
 
       <TextInput
         placeholder="Enter your email"
@@ -34,45 +78,13 @@ export const SignUp = () => {
         clearTextOnFocus
         clearButtonMode="while-editing"
         selectionColor={'#ef4046'}
-        containerStyle={{ paddingVertical: 10, borderWidth: 0.8 }}
+        containerStyle={{ paddingVertical: 10, borderWidth: 0.8, marginTop: 20 }}
         leftContent={
           <Ionicons
             name="mail-outline"
             size={20}
             color={themeColor.black300}
             style={globalStyles.leftContent}
-          />
-        }
-      />
-
-      <TextInput
-        placeholder="Enter your password"
-        value={password}
-        onChangeText={(val) => setPassword(val)}
-        borderRadius={25}
-        autoCapitalize="none"
-        collapsable={true}
-        secureTextEntry={!showPassword}
-        clearTextOnFocus
-        selectionColor={'#ef4046'}
-        containerStyle={{ paddingVertical: 10, marginTop: 20, borderWidth: 0.8, }}
-        leftContent={
-          <Ionicons
-            name="lock-closed-outline"
-            size={20}
-            color={themeColor.black300}
-            style={globalStyles.leftContent}
-          />
-        }
-        rightContent={
-          <Ionicons
-            name={showPassword ? 'ios-eye' : 'ios-eye-off-outline'}
-            style={{ direction: 'rtl' }}
-            size={20}
-            color={themeColor.black300}
-            onPress={() => {
-              setShowPassword(!showPassword), () => Keyboard.dismiss();
-            }}
           />
         }
       />
@@ -85,7 +97,8 @@ export const SignUp = () => {
           checkedColor={'#ef4046'}
         />
         <Text style={{ marginLeft: 10, color: 'gray' }}>
-          By signing up you agree to our <Text style={globalStyles.textTerms}>Terms of Service</Text> and
+          By signing up you agree to our{' '}
+          <Text style={globalStyles.textTerms}>Terms of Service</Text> and
           {'\n'}
           <Text style={globalStyles.textTerms}>Privacy Policies </Text>
         </Text>
@@ -104,7 +117,7 @@ export const SignUp = () => {
             text="Sign Up"
             size="lg"
             color="#ef4046"
-            onPress={() => null}
+            onPress={navigateToSignUp2}
             style={{
               paddingHorizontal: 160,
               paddingVertical: 15,
@@ -114,64 +127,6 @@ export const SignUp = () => {
           ;
         </Text>
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginTop: 24,
-        }}
-      >
-        <View style={globalStyles.horizontalRule} />
-        <View>
-          <Text style={globalStyles.orSignUpWith}>Or</Text>
-        </View>
-        <View style={globalStyles.horizontalRule} />
-      </View>
-      <View
-        style={{
-          marginTop: 30,
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Text>
-          <Button
-            text="Sign up using Google"
-            textStyle={{
-              color: '#3e3e3e',
-            }}
-            size="lg"
-            color={'transparent'}
-            onPress={() => console.log('Button tapped')}
-            leftContent={
-              <Ionicons
-                name="ios-logo-google"
-                size={20}
-                style={{
-                  paddingRight: 7,
-                }}
-                color={themeColor.success}
-              />
-            }
-            style={{
-              paddingHorizontal: 90,
-              paddingVertical: 15,
-              borderRadius: 23,
-              borderColor: '#eaecf0',
-              borderWidth: 0.8,
-            }}
-          />
-          ;
-        </Text>
-      </View>
-      <Text style={globalStyles.bottomText}>
-        Already have an account?{' '}
-        <Text onPress={() => null} style={globalStyles.textTerms}>
-          Login
-        </Text>{' '}
-      </Text>
     </View>
   );
 };
-

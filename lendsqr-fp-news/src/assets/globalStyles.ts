@@ -29,6 +29,31 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
+  columnCenter: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  columnBetween: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  columnAround: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+ columnStart: {
+  flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  ColumnEnd: {
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
