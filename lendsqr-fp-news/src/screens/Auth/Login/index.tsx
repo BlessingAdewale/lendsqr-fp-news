@@ -24,9 +24,9 @@ export const Login = () => {
 
       <GoogleButton marginTop={10} onPress={() => null} />
       <Text style={globalStyles.bottomText}>
-        Don't have an account yet?{' '}
+        Don't have an account?{' '}
         <Text onPress={navigateToSignUp} style={globalStyles.textTerms}>
-          Create an account here{' '}
+          Create an account{' '}
         </Text>{' '}
       </Text>
     </View>

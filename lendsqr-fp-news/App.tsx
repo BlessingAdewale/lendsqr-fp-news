@@ -7,6 +7,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useFontsHelper } from '@hooks';
 import { ThemeProvider } from 'react-native-rapi-ui';
 import { PaperProvider } from 'react-native-paper';
+import { Provider } from 'react-redux';
+import { store } from '@state';
 
 const queryClient = new QueryClient();
 
@@ -19,6 +21,7 @@ export default function App() {
 
   return (
     <>
+     <Provider store={store}>
       <PaperProvider>
         <ThemeProvider theme="light">
           <QueryClientProvider client={queryClient}>
@@ -26,6 +29,7 @@ export default function App() {
           </QueryClientProvider>
         </ThemeProvider>
       </PaperProvider>
+      </Provider>
     </>
   );
 }
