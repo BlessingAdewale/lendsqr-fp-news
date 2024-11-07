@@ -76,9 +76,9 @@ export const Home = () => {
 
   // if (data) console.log(data);
 
-  const renderItem = ({ item }: ItemProps) => (
+  const renderItem = ({ item }: any) => (
     <TouchableOpacity onPress={() => {
-      navigation.navigate('NewsDetails')}}
+      navigation.navigate('NewsDetails', {...item })}}
       >
       <View key={item.id}>
         <Image

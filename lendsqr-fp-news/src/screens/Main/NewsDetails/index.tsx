@@ -1,4 +1,4 @@
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { globalStyles } from '@globalStyles';
@@ -11,53 +11,39 @@ export const NewsDetails = () => {
   const route = useRoute<NewsDetailsRouteProp>();
 
   return (
-    <View style={[globalStyles.wrapper]}>
-      <View style={styles.topContainer}>
-        <ImageBackground
-          // source={route.params.photo_Url}
-          // defaultSource={images.errorImage}
-          style={{
-            width: '100%',
-            height: '50%',
-            justifyContent: 'center',
-            overflow: 'hidden',
-          }}
-        >
-          <LinearGradient
-            colors={['transparent', '#110']}
-            start={{ x: 0.5, y: 0.6 }}
-            style={styles.background}
-          />
-        </ImageBackground>
-      </View>
-      <View style={styles.bottomContainer}>
-        <View style={[{ paddingVertical: 60 }, globalStyles.columnCenter]}>
-          <Text> Title</Text>
-          <Text>SubTitle</Text>
+    <ScrollView
+      contentContainerStyle={[
+        globalStyles.wrapper,
+        { paddingHorizontal: layout.pixelSizeHorizontal(20) },
+      ]}
+    >
+      <Text
+        style={[
+          globalStyles.rowCenter,
+          globalStyles.textHello,
+          { paddingTop: layout.pixelSizeVertical(50) },
+        ]}
+      >
+        News Details
+      </Text>
+      <View style={{}}>
+        <View key={route?.key} style={[]}>
+          <Text style={styles.textContainer}> Title: {route?.params?.title}</Text>
+          <Text style={styles.textContainer}> Snippet: {route?.params?.snippet}</Text>
+          <Text style={styles.textContainer}> SourceUrl: {route?.params?.source_url}</Text>
+          <Text style={styles.textContainer}> SourceName: {route?.params?.source_name}</Text>
+          <Text style={styles.textContainer}> Logo_Url: {route?.params?.source_logo_url}</Text>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  background: {
-    width: '100%',
-    // position: 'absolute',
-    // left: 0,
-    // right: 0,
-    // top: 0,
-    // height: layout.heightPixel(990),
-  },
-  bottomContainer: {
-    height: '90%',
-    backgroundColor: 'red',
-    borderTopLeftRadius: layout.fontPixel(55),
-    borderTopRightRadius: layout.fontPixel(55),
-    marginBottom: -100,
-  },
-  topContainer: {
-    backgroundColor: 'blue',
-    marginTop: -30,
+  textContainer: {
+    color: 'gray',
+    fontSize: layout.fontPixel(15),
+    marginBottom: layout.pixelSizeVertical(20),
+    fontFamily: 'DMSans_500Medium',
   },
 });
