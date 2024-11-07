@@ -1,12 +1,15 @@
 import React from 'react';
 
 //firebase
-import { onAuthStateChanged, getAuth, User } from 'firebase/auth';
-import app from '../config/firebase';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import {app} from '../config/firebase';
 
 //redux
 import { login, logout, selectUser } from '../state/features/user';
 import { useAppDispatch, useAppSelector } from '@state';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getFirestore } from 'firebase/firestore';
 
 const auth = getAuth(app);
 

@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 type GoogleButtonProps = ScrollView['props'] & {
   marginTop: number;
-  onPress: () => null;
+  onPress: () => void;
 };
 
 export const GoogleButton = ({ marginTop, onPress }: GoogleButtonProps) => {
