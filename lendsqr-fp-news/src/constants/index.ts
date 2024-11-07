@@ -1,2 +1,3 @@
-export * from './schema'
-export * from './theme'
+import images from './images';
+
+export {  images };

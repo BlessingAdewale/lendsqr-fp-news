@@ -3,7 +3,7 @@ import { layout } from '@utils';
 // import { theme } from '@constants';
 
 export const globalStyles = StyleSheet.create({
-  // wrapper: { flex: 1, backgroundColor: theme.colors.background },
+  wrapper: { flex: 1, backgroundColor: '#fff' },
   rowCenter: {
     flexDirection: 'row',
     justifyContent: 'center',

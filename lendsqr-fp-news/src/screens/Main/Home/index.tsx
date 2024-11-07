@@ -19,48 +19,67 @@ import { globalStyles } from '@globalStyles';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator } from 'react-native-paper';
+import { images } from '@constants';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { HomeTabNavigationProp, HomeTabRouteProp } from 'navigation/types';
 
-const image = require('../../../assets/error-image.png');
+export interface ItemProps {
+  item : {
+    id: any; 
+    title: string;
+    link: string;
+    snippet: string;
+    photo_url: string;
+    thumbnail_url: string;
+    published_datetime_utc: string;
+    source_url: string;
+    source_name: string;
+    source_logo_url: string;
+    source_favicon_url: string;
+    source_publication_id: string;
+    related_topics: [];
+    sub_articles: [];
+    story_id: string;
+  },
+}
+
 
 export const Home = () => {
+  const navigation = useNavigation<HomeTabNavigationProp>();
+   const route = useRoute<HomeTabRouteProp>()
+
   const { isPending, error, data, isLoading, isFetching } = useQuery({
-    queryKey: ['ce12c9aabemshc511d2300593e02p110812jsnfc8259a91719'],
+    queryKey: ['67cdf5dc34msh38d9ae14ad9fb66p1c8748jsn29fe6b2483f8'],
     queryFn: () =>
       fetch(
         'https://real-time-news-data.p.rapidapi.com/topic-news-by-section?topic=TECHNOLOGY&section=CAQiW0NCQVNQZ29JTDIwdk1EZGpNWFlTQW1WdUdnSlZVeUlQQ0FRYUN3b0pMMjB2TURKdFpqRnVLaGtLRndvVFIwRkVSMFZVWDFORlExUkpUMDVmVGtGTlJTQUJLQUEqKggAKiYICiIgQ0JBU0Vnb0lMMjB2TURkak1YWVNBbVZ1R2dKVlV5Z0FQAVAB&limit=500&country=US&lang=en',
         {
           headers: {
             'x-rapidapi-host': 'real-time-news-data.p.rapidapi.com',
-            'x-rapidapi-key': 'ce12c9aabemshc511d2300593e02p110812jsnfc8259a91719',
+            'x-rapidapi-key': '67cdf5dc34msh38d9ae14ad9fb66p1c8748jsn29fe6b2483f8',
           },
         },
       ).then((res) => res.json()),
-    // staleTime: Infinity,
+    staleTime: Infinity,
   });
 
-  if (isPending) return;
-
-  <Text style={[{ flex: 1 }, globalStyles.columnCenter]}>
-    <ActivityIndicator animating={true} size={'large'} color="#ef4046" />;
-  </Text>;
   if (isLoading)
     return (
-      <Text style={[{ flex: 1 }, globalStyles.columnCenter]}>
-        <ActivityIndicator animating={true} size={'large'} color="#ef4046" />;
-      </Text>
+      <View style={[{ flex: 1 }, globalStyles.columnCenter]}>
+        <Text style={[globalStyles.textCreate]}>
+          <ActivityIndicator animating={true} size={80} color="#ef4046" />;
+        </Text>
+      </View>
     );
-  if (isFetching)
-    return (
-      <Text style={[{ flex: 1 }, globalStyles.columnCenter]}>
-        <ActivityIndicator animating={true} size={'large'} color="#ef4046" />;
-      </Text>
-    );
+
   if (error) return <Text>An error has occurred: {error.message} </Text>;
 
-  if (data) console.log(data);
+  // if (data) console.log(data);
 
-  const renderItem = ({ item }: any) => (
-    <TouchableOpacity>
+  const renderItem = ({ item }: ItemProps) => (
+    <TouchableOpacity onPress={() => {
+      navigation.navigate('NewsDetails')}}
+      >
       <View key={item.id}>
         <Image
           style={styles.image}
@@ -83,7 +102,7 @@ export const Home = () => {
         <StatusBar style="light" />
         <ImageBackground
           source={{ uri: `${data?.data[0]?.photo_url}` }}
-          defaultSource={image}
+          defaultSource={images.errorImage}
           style={{
             width: '100%',
             height: '100%',
@@ -114,7 +133,10 @@ export const Home = () => {
               <Text style={styles.text}>News of the day</Text>
             </BlurView>
             <Text style={styles.headingText}>{data?.data[0]?.title.slice(0, 63)}</Text>
-            <TouchableOpacity style={[globalStyles.rowStart, styles.learnMoreContainer]}>
+            <TouchableOpacity
+              style={[globalStyles.rowStart, styles.learnMoreContainer]}
+              // onPress={() => navigation.navigate('NewsDetails', { data: data?.data[0] })}
+            >
               <Text style={styles.learnMore}>Learn More</Text>
               <FontAwesome name="long-arrow-right" size={23} color="white" />
             </TouchableOpacity>

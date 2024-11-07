@@ -12,8 +12,7 @@ export const NavigationContainer = () => {
 
   return (
     <BaseNavigationContainer>
-      {user !== null ? <RootStackNavigator /> : <AuthStackNavigator />}
+      {user == null ? <RootStackNavigator /> : <AuthStackNavigator />}
     </BaseNavigationContainer>
   );
 };
-
