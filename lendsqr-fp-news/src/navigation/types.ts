@@ -3,8 +3,11 @@ import { RouteProp } from '@react-navigation/native';
 import { ItemProps } from '@screens';
 
 export type RootStackParamList = {
-  HomeStack: any;
-  NewsDetails: any;
+  HomeStack: {
+    item: ItemProps;
+  };
+  
+  NewsDetails: undefined;
 };
 export type AuthStackParamList = {
   Login: undefined;
