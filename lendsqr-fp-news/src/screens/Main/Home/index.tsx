@@ -49,14 +49,14 @@ export const Home = () => {
    const route = useRoute<HomeTabRouteProp>()
 
   const { isPending, error, data, isLoading, isFetching } = useQuery({
-    queryKey: ['67cdf5dc34msh38d9ae14ad9fb66p1c8748jsn29fe6b2483f8'],
+    queryKey: ['2cbf29b8bbmsh8f707308d165848p11c674jsn4a338bb6adc2'],
     queryFn: () =>
       fetch(
         'https://real-time-news-data.p.rapidapi.com/topic-news-by-section?topic=TECHNOLOGY&section=CAQiW0NCQVNQZ29JTDIwdk1EZGpNWFlTQW1WdUdnSlZVeUlQQ0FRYUN3b0pMMjB2TURKdFpqRnVLaGtLRndvVFIwRkVSMFZVWDFORlExUkpUMDVmVGtGTlJTQUJLQUEqKggAKiYICiIgQ0JBU0Vnb0lMMjB2TURkak1YWVNBbVZ1R2dKVlV5Z0FQAVAB&limit=500&country=US&lang=en',
         {
           headers: {
             'x-rapidapi-host': 'real-time-news-data.p.rapidapi.com',
-            'x-rapidapi-key': '67cdf5dc34msh38d9ae14ad9fb66p1c8748jsn29fe6b2483f8',
+            'x-rapidapi-key': '2cbf29b8bbmsh8f707308d165848p11c674jsn4a338bb6adc2',
           },
         },
       ).then((res) => res.json()),
@@ -74,7 +74,7 @@ export const Home = () => {
 
   if (error) return <Text>An error has occurred: {error.message} </Text>;
 
-  // if (data) console.log(data);
+  if (data) console.log(data);
 
   const renderItem = ({ item }: ItemProps) => (
     <TouchableOpacity onPress={() => {
