@@ -14,6 +14,7 @@ export default {
     },
     ios: {
       supportsTablet: true,
+      googleServicesFile: "./GoogleService-Info.plist"
     },
     android: {
       adaptiveIcon: {
