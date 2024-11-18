@@ -1,7 +1,7 @@
 {
   "name": "RNGoogleSignin",
-  "version": "8.0.0",
-  "summary": "Google Signin for your react native applications",
+  "version": "13.1.0",
+  "summary": "Google sign in for your react native applications",
   "homepage": "https://github.com/react-native-google-signin/google-signin#readme",
   "license": "MIT",
   "authors": "Vojtech Novak <vonovak@gmail.com> (https://github.com/vonovak)",
@@ -9,16 +9,16 @@
     "ios": "10.0"
   },
   "source": {
-    "git": "https://github.com/react-native-google-signin/google-signin.git",
-    "tag": "8.0.0"
+    "git": "https://github.com/react-native-google-signin/google-signin-next.git",
+    "tag": "13.1.0"
   },
   "source_files": "ios/**/*.{h,m,mm}",
   "dependencies": {
+    "GoogleSignIn": [
+      "~> 7.1"
+    ],
     "React-Core": [
 
-    ],
-    "GoogleSignIn": [
-      "~> 6.2.2"
     ]
   }
 }

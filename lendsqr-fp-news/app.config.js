@@ -14,7 +14,8 @@ export default {
     },
     ios: {
       supportsTablet: true,
-      googleServicesFile: "./GoogleService-Info.plist"
+      googleServicesFile: "./GoogleService-Info.plist",
+      bundleIdentifier: "LendSqr"
     },
     android: {
       adaptiveIcon: {
@@ -23,7 +24,7 @@ export default {
       },
       package: 'com.adeleke_blessing.lendsqrfpnews',
     },
-    scheme: 'lendSqr-App',
+    // scheme: 'lendSqr-App',
     web: {
       favicon: './src/assets/favicon.png',
     },

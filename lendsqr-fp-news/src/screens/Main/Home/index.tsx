@@ -24,8 +24,8 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { HomeTabNavigationProp, HomeTabRouteProp } from 'navigation/types';
 
 export interface ItemProps {
-  item : {
-    id: any; 
+  item: {
+    id: any;
     title: string;
     link: string;
     snippet: string;
@@ -40,23 +40,22 @@ export interface ItemProps {
     related_topics: [];
     sub_articles: [];
     story_id: string;
-  },
+  };
 }
-
 
 export const Home = () => {
   const navigation = useNavigation<HomeTabNavigationProp>();
-   const route = useRoute<HomeTabRouteProp>()
+  const route = useRoute<HomeTabRouteProp>();
 
   const { isPending, error, data, isLoading, isFetching } = useQuery({
-    queryKey: ['67cdf5dc34msh38d9ae14ad9fb66p1c8748jsn29fe6b2483f8'],
+    queryKey: ['2cbf29b8bbmsh8f707308d165848p11c674jsn4a338bb6adc2'],
     queryFn: () =>
       fetch(
         'https://real-time-news-data.p.rapidapi.com/topic-news-by-section?topic=TECHNOLOGY&section=CAQiW0NCQVNQZ29JTDIwdk1EZGpNWFlTQW1WdUdnSlZVeUlQQ0FRYUN3b0pMMjB2TURKdFpqRnVLaGtLRndvVFIwRkVSMFZVWDFORlExUkpUMDVmVGtGTlJTQUJLQUEqKggAKiYICiIgQ0JBU0Vnb0lMMjB2TURkak1YWVNBbVZ1R2dKVlV5Z0FQAVAB&limit=500&country=US&lang=en',
         {
           headers: {
             'x-rapidapi-host': 'real-time-news-data.p.rapidapi.com',
-            'x-rapidapi-key': '67cdf5dc34msh38d9ae14ad9fb66p1c8748jsn29fe6b2483f8',
+            'x-rapidapi-key': '2cbf29b8bbmsh8f707308d165848p11c674jsn4a338bb6adc2',
           },
         },
       ).then((res) => res.json()),
@@ -77,9 +76,12 @@ export const Home = () => {
   // if (data) console.log(data);
 
   const renderItem = ({ item }: any) => (
-    <TouchableOpacity onPress={() => {
-      navigation.navigate('NewsDetails', {...item })}}
-      >
+    <TouchableOpacity
+      key={item.id}
+      onPress={() => {
+        navigation.navigate('NewsDetails', { ...item });
+      }}
+    >
       <View key={item.id}>
         <Image
           style={styles.image}
@@ -132,7 +134,7 @@ export const Home = () => {
             <BlurView intensity={10} style={styles.blurContainer}>
               <Text style={styles.text}>News of the day</Text>
             </BlurView>
-            <Text style={styles.headingText}>{data?.data[0]?.title.slice(0, 63)}</Text>
+            <Text style={styles.headingText}>{data?.data[0]?.title.slice(0, 53)}</Text>
             <TouchableOpacity
               style={[globalStyles.rowStart, styles.learnMoreContainer]}
               // onPress={() => navigation.navigate('NewsDetails', { data: data?.data[0] })}
@@ -163,7 +165,7 @@ export const Home = () => {
         <FlatList
           data={data.data}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item, index) => index.toString()}
           showsHorizontalScrollIndicator={true}
           horizontal
         />
@@ -183,17 +185,17 @@ const styles = StyleSheet.create({
     fontSize: layout.size.h1,
     fontFamily: 'DMSans_700Bold',
     color: '#ef4046',
-    marginRight: layout.pixelSizeHorizontal(162),
+    marginRight: layout.pixelSizeHorizontal(152),
   },
   more: {
     fontSize: layout.size.h3,
     fontFamily: 'SpaceGrotesk_500Medium',
     color: '#ef4046',
     position: 'absolute',
-    right: -100,
-    left: -54,
-    bottom: -100,
-    top: -10,
+    right: layout.pixelSizeHorizontal(-50),
+    left: layout.pixelSizeHorizontal(-24),
+    bottom: layout.pixelSizeVertical(-90),
+    top: layout.pixelSizeVertical(-9),
   },
   headContainer: {
     justifyContent: 'flex-start',
