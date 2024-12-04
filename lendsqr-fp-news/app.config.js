@@ -14,8 +14,8 @@ export default {
     },
     ios: {
       supportsTablet: true,
-      googleServicesFile: "./GoogleService-Info.plist",
-      bundleIdentifier: "LendSqr"
+      googleServicesFile: './GoogleService-Info.plist',
+      bundleIdentifier: 'LendSqr',
     },
     android: {
       adaptiveIcon: {
@@ -24,10 +24,22 @@ export default {
       },
       package: 'com.adeleke_blessing.lendsqrfpnews',
     },
+    newArchEnabled: true,
     // scheme: 'lendSqr-App',
     web: {
       favicon: './src/assets/favicon.png',
     },
+    plugins: [
+      [
+        'expo-font',
+        {
+          "fonts": 'node_modules/@expo-google-fonts/space-grotesk',
+          
+          "fonts": 'node_modules/@expo-google-fonts/dm-sans',
+
+        },
+      ],
+    ],
 
     extra: {
       expoKey: process.env.EXPO_KEY,

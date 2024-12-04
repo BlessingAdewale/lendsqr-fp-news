@@ -11,14 +11,16 @@ import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 
 const firebaseConfig = {
-  apiKey: Constants.manifest?.extra?.firebaseApiKey,
-  authDomain: Constants.manifest?.extra?.firebaseAuthDomain,
-  projectId: Constants.manifest?.extra?.firebaseProjectId,
-  storageBucket: Constants.manifest?.extra?.firebaseStorageBucket,
-  messagingSenderId: Constants.manifest?.extra?.firebaseMessagingSenderId,
-  appId: Constants.manifest?.extra?.firebaseAppId,
-  measurementId: Constants.manifest?.extra?.firebaseMeasurementId,
+  apiKey: Constants.extra?.firebaseApiKey,
+  authDomain: Constants.extra?.firebaseAuthDomain,
+  projectId: Constants.extra?.firebaseProjectId,
+  storageBucket: Constants.extra?.firebaseStorageBucket,
+  messagingSenderId: Constants.extra?.firebaseMessagingSenderId,
+  appId: Constants.extra?.firebaseAppId,
+  measurementId: Constants.extra?.firebaseMeasurementId,
 };
+
+
 
 const app = initializeApp(firebaseConfig);
 const auth = initializeAuth(app, {

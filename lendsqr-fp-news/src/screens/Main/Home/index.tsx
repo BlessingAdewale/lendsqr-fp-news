@@ -168,6 +168,7 @@ export const Home = () => {
           keyExtractor={(item, index) => index.toString()}
           showsHorizontalScrollIndicator={true}
           horizontal
+          initialNumToRender={5} 
         />
       </View>
     </SafeAreaView>
@@ -193,7 +194,7 @@ const styles = StyleSheet.create({
     color: '#ef4046',
     position: 'absolute',
     right: layout.pixelSizeHorizontal(-50),
-    left: layout.pixelSizeHorizontal(-24),
+    left: layout.pixelSizeHorizontal(-29),
     bottom: layout.pixelSizeVertical(-90),
     top: layout.pixelSizeVertical(-9),
   },

@@ -1,6 +1,6 @@
 {
   "cli": {
-    "version": ">= 5.9.3"
+    "version": ">= 3.5.2"
   },
   "build": {
     "development": {
@@ -13,6 +13,11 @@
     "production": {}
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleId": "adewaleadelekeb@email.com",
+        "ascAppId": "[adewaleadelekeb@gmail.com]"
+      }
+    }
   }
 }
